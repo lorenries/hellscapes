@@ -3,6 +3,8 @@ var browserSync = require('browser-sync').create();
 var uncss 		= require('gulp-uncss');
 var concat 		= require('gulp-concat');
 var nano 		= require('gulp-cssnano');
+var browserify 	= require('browserify');
+var source 		= require('vinyl-source-stream');
 
 gulp.task('serve', function() {
     browserSync.init({
@@ -17,7 +19,7 @@ gulp.task('serve', function() {
 });
 
 gulp.task('css', function() {
-    return gulp.src('src/assets/css/*.css')
+    return gulp.src('./src/assets/css/*.css')
         .pipe(concat('main.css'))
         .pipe(uncss({
             html: ['http://localhost:3000/']
@@ -25,7 +27,16 @@ gulp.task('css', function() {
         .pipe(nano({
             discardComments: {removeAll: true}
         }))
-        .pipe(gulp.dest('src/assets/css/'));
+        .pipe(gulp.dest('./src/assets/css/'));
+});
+
+gulp.task('js', function() {
+    return browserify('./src/assets/js/main.js')
+        .bundle()
+        //Pass desired output filename to vinyl-source-stream
+        .pipe(source('bundle.js'))
+        // Start piping stream to tasks!
+        .pipe(gulp.dest('./src/assets/js/'));
 });
 
 gulp.task('build', function() {
