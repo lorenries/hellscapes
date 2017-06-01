@@ -19,6 +19,7 @@
   "devDependencies": {
     "browser-sync": "^2.18.12",
     "browserify": "^14.4.0",
+    "d3-tip": "^0.6.7",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-cssnano": "^2.1.2",
@@ -29,7 +30,6 @@
   "dependencies": {
     "animejs": "^2.0.2",
     "d3": "^3.5.17",
-    "d3-tip": "^0.7.1",
     "fitter-happier-text": "0.0.7",
     "tabletop": "^1.5.2",
     "topojson": "^3.0.0"
