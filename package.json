@@ -1,0 +1,35 @@
+{
+  "name": "hellscapes",
+  "version": "1.0.0",
+  "description": "visions of the apocalypse",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lorenries/hellscapes.git"
+  },
+  "author": "loren riesenfeld",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lorenries/hellscapes/issues"
+  },
+  "homepage": "https://github.com/lorenries/hellscapes#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.12",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-uglify": "^3.0.0",
+    "gulp-uncss": "^1.0.6"
+  },
+  "dependencies": {
+    "animejs": "^2.0.2",
+    "d3": "^3.5.17",
+    "d3-tip": "^0.7.1",
+    "fitter-happier-text": "0.0.7",
+    "tabletop": "^1.5.2",
+    "topojson": "^3.0.0"
+  }
+}
