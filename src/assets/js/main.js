@@ -1,9 +1,9 @@
 "use strict";
 
-var d3 = require('d3');
-var topojson = require('topojson');
-var Tabletop = require('tabletop');
-var d3tip = require("d3-tip")(d3);
+// var d3 = require('d3');
+// var topojson = require('topojson');
+// var Tabletop = require('tabletop');
+// var d3tip = require("d3-tip")(d3);
 var math = require('./math.js')
 var fitText = require('./fitText.js');
 var animations = require('./animations.js')
@@ -117,7 +117,7 @@ function rotateMap(d) {
     });
 }
 
-tip = d3tip()
+var tip = d3.tip()
   .attr('class', 'd3-tip')
   .html(function(d) { 
     return `
@@ -135,7 +135,7 @@ d3.json("https://unpkg.com/world-atlas@1/world/110m.json", function(error, world
       .attr("class", "land")
       .attr("d", path);
 
-  borders = topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; });
+  var borders = topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; });
 
   svg.append("path")
     .datum(borders)

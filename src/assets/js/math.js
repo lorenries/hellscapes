@@ -46,10 +46,9 @@ function quaternion(v0, v1) {
           return;
 
         var theta = .5 * Math.acos(Math.max(-1, Math.min(1, dot(v0, v1)))),
-
-          qi  = w[2] * Math.sin(theta) / w_len; 
-          qj  = - w[1] * Math.sin(theta) / w_len; 
-          qk  = w[0]* Math.sin(theta) / w_len;
+          qi  = w[2] * Math.sin(theta) / w_len,
+          qj  = - w[1] * Math.sin(theta) / w_len,
+          qk  = w[0]* Math.sin(theta) / w_len,
           qr  = Math.cos(theta);
 
       return theta && [qr, qi, qj, qk];
