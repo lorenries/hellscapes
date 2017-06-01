@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:image" content="../assets/images/apocalypse6.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hellscapes: Visions of the Apocalypse</title>
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css" />
+    <link rel="stylesheet" href="http://d2v52k3cl9vedd.cloudfront.net/vhs/0.1.0/vhs.min.css">
+    <link rel="stylesheet" href="../assets/css/icons.css">
+    <link rel="icon" href="../assets/icons/gasmask.png" type="image/png">
+</head>
+<style>
+    @font-face {
+        font-family: 'reporter';
+        src: url('../assets/fonts/reportr1.woff');
+    }
+
+    body {
+        background-image: url("../assets/icons/hellscape.svg");
+        background-size: 6rem;
+        background-repeat: repeat;
+    }
+
+    .reporter {
+        font-family: 'reporter';
+    }
+
+    .spin {
+        animation: spin 1.5s linear infinite;
+    }
+
+    .spin--slow {
+        animation: spinback 1s infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spinback {
+        0% {
+            transform: rotate(360deg);
+        }
+        100% {
+            transform: rotate(0deg);
+        }
+    }
+    .ripple {
+      animation: ripple 1s linear infinite;
+    }
+    @keyframes ripple{ 100% {
+      margin-left: -80px;
+      margin-top: -80px;
+      border-width: 80px;
+      opacity: 0;
+    }}
+
+</style>
+
+<body class="w-100 bg-black center tc">
+    <div class="mw8 center tc">
+        <h1 class="bg-black white pa3-ns center tc reporter f-1 f-headline-ns mb3 ba bw2 fn">
+          Visions of the Apocalypse <img class="ph3 h2 h3-ns w-auto dib white spin--slow" src="../assets/icons/zombie.svg" />
+        </h1>
+        <div class="mw7 center">
+            <img src="../assets/images/apocalypse2.png" class="w-90 center bg-black pa2 white ba bw2 mb3">
+            <img src="../assets/images/apocalypse7.jpg" class="w-90 center bg-black pa2 white ba bw2 mb3">
+            <img src="../assets/images/apocalypse3.jpeg" class="w-90 center bg-black pa2 white ba bw2 mb3">
+            <img src="../assets/images/apocalypse4.jpg" class="w-90 center bg-black pa2 white ba bw2 mb3">
+            <img src="../assets/images/apocalypse5.jpg" class="w-90 center bg-black pa2 white ba bw2 mb3">
+            <img src="../assets/images/apocalypse14.jpg" class="w-90 center bg-black pa2 white ba bw2 mb3">
+            <img src="../assets/images/apocalypse6.jpg" class="w-90 center bg-black pa2 white ba bw2 mb3">
+            <img src="../assets/images/apocalypse7.jpg" class="w-90 center bg-black pa2 white ba bw2 mb3">
+            <img src="../assets/images/apocalypse8.jpg" class="w-90 center bg-black pa2 white ba bw2 mb3">
+            <img src="../assets/images/apocalypse9.jpg" class="w-90 center bg-black pa2 white ba bw2 mb3">
+            <img src="../assets/images/apocalypse10.jpg" class="w-90 center bg-black pa2 white ba bw2 mb3">
+            <img src="../assets/images/apocalypse11.jpg" class="w-90 center bg-black pa2 white ba bw2 mb3">
+            <img src="../assets/images/apocalypse12.jpg" class="w-90 center bg-black pa2 white ba bw2 mb3">
+            <img src="../assets/images/apocalypse13.jpg" class="w-90 center bg-black pa2 white ba bw2 mb3">
+        </div>
+        <div class="dib fn white reporter center tc">
+            <p class="dib fn f1 f-headline-ns reporter white center tc bg-black mh0 pv3 ba bw2">
+                "I am become death, the destroyer of worlds."
+            </p>
+        </div>
+    </div>
+
+    <div id="control-container" class="bg-black br-100 ba bw2 h3 w3 white fixed z-9999 bottom-2 left-2 dib center tc ma0 pa0 spin" style="line-height: 0;">
+      <a href="#" onclick="audioControl()" class="no-underline white pa0 ma0 f1 center tc absolute dtc v-mid" style="left:.55rem; transform-origin: 50% 50%; line-height: 1;"><span class="v-mid tc center" id="controls" ></span></a>
+    </div>
+
+    <div class="bold white pl2 reporter">
+      <div class="f1 f-headline-ns vhs-flash vhs-duration-2 vhs-delay-1 fixed vhs-reverse white bottom-0-ns bottom-2" id="fuckyou" style="left: 8rem; text-shadow:
+       3px 3px 0 #000,
+     -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;">Fuck You!!!</div>
+    </div>
+
+    <audio id="audio" controls autoplay loop class="dn">
+      <source src="../assets/audio/sleighbells.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+</body>
+<script type="text/javascript">
+    var audio = document.getElementById('audio');
+    var controls = document.getElementById('controls');
+    var controlContainer = document.getElementById('control-container')
+    var fuckyou = document.getElementById('fuckyou')
+
+    function checkAudioState() {
+      if (!document.getElementById('audio').paused) {
+        controls.classList.add('icon-mute');
+        fuckyou.classList.add('dn')
+      } else {
+        controls.classList.add('icon-unmute');
+        fuckyou.classList.remove('dn')
+      }
+    }
+
+    function addMuteStyle() {
+      controls.classList.remove('icon-mute');
+      controlContainer.style.transform=window.getComputedStyle(controlContainer).getPropertyValue("transform")||"initial";
+      controlContainer.classList.remove('spin');
+      fuckyou.classList.remove('dn')
+      controls.classList.add('icon-unmute');
+    }
+
+    function addPlayStyle() {
+      controls.classList.remove('icon-unmute');
+      controls.classList.add('icon-mute');
+      controlContainer.classList.add('spin');
+      fuckyou.classList.add('dn')
+    }
+
+    function audioControl() {
+        event.preventDefault();
+        if (controls.classList.contains('icon-mute')) {
+          audio.pause();
+          addMuteStyle()
+        }  else if (controls.classList.contains('icon-unmute')) {
+          audio.play();
+          addPlayStyle();
+        }
+    }
+
+    document.onreadystatechange = function () {
+      if (document.readyState === "complete") {
+        checkAudioState();
+      }
+    }
+
+</script>
+
+</html>

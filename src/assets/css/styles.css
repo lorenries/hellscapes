@@ -1,0 +1,21 @@
+@font-face {
+        font-family: 'reporter';
+        src: url('../fonts/reportr1.woff');
+    }
+
+    .reporter {
+        font-family: 'reporter';
+    }
+
+    .spin--slow {
+        animation: spinback 1s ease infinite;
+    }
+
+    @keyframes spinback {
+        0% {
+            transform: rotate(360deg);
+        }
+        100% {
+            transform: rotate(0deg);
+        }
+    }
