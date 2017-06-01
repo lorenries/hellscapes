@@ -89,135 +89,136 @@
 <script src="https://unpkg.com/topojson@3"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
 <script src="https://unpkg.com/d3-tip@0.7.1/index.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-<script src="https://unpkg.com/fitter-happier-text@0.0.7/dist/fitter-happier-text.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script src="https://unpkg.com/fitter-happier-text@0.0.7/dist/fitter-happier-text.js"></script> -->
+<script src="../assets/js/bundle.js"></script>
 <script>
 
-var nodes = document.querySelectorAll('.fitter-happier-text');
-fitterHappierText(nodes);
+// var nodes = document.querySelectorAll('.fitter-happier-text');
+// fitterHappierText(nodes);
 
-var lineDrawing = anime({
-  targets: '#zombie path',
-  // strokeDashoffset: [anime.setDashoffset, 0], // animate the line drawing
-  easing: 'easeInOutSine',
-  duration: 1100,
-  delay: function(el, i) { return i * 250 },
-  stroke: [
-    {value: '#FFF'}, // Or #FFFFFF
-    {value: '#B20000'}
-  ],  
-  direction: 'alternate',
-  loop: true
-});
+// var lineDrawing = anime({
+//   targets: '#zombie path',
+//   // strokeDashoffset: [anime.setDashoffset, 0], // animate the line drawing
+//   easing: 'easeInOutSine',
+//   duration: 1100,
+//   delay: function(el, i) { return i * 250 },
+//   stroke: [
+//     {value: '#FFF'}, // Or #FFFFFF
+//     {value: '#B20000'}
+//   ],  
+//   direction: 'alternate',
+//   loop: true
+// });
 
-var eyes = anime({
-  targets: '#zombie circle',
-  strokeDashoffset: [anime.setDashoffset, 0],
-  easing: 'easeInOutSine',
-  duration: 1100,
-  delay: function(el, i) { return i * 250 },
-  stroke: [
-    {value: '#FFF'}, // Or #FFFFFF
-    {value: '#00B233'}
-  ],  
-  direction: 'alternate',
-  loop: true
-});
+// var eyes = anime({
+//   targets: '#zombie circle',
+//   strokeDashoffset: [anime.setDashoffset, 0],
+//   easing: 'easeInOutSine',
+//   duration: 1100,
+//   delay: function(el, i) { return i * 250 },
+//   stroke: [
+//     {value: '#FFF'}, // Or #FFFFFF
+//     {value: '#00B233'}
+//   ],  
+//   direction: 'alternate',
+//   loop: true
+// });
 
-var zombieBounce = anime({
-  targets: '#zombie svg',
-  easing: 'easeInOutSine',
-  duration: 1000,
-  translateY: 20,
-  delay: function(el, i) { return i * 250 },
-  direction: 'alternate',
-  loop: true
-});
+// var zombieBounce = anime({
+//   targets: '#zombie svg',
+//   easing: 'easeInOutSine',
+//   duration: 1000,
+//   translateY: 20,
+//   delay: function(el, i) { return i * 250 },
+//   direction: 'alternate',
+//   loop: true
+// });
 
-var zombie = document.querySelector('#zombie svg');
+// var zombie = document.querySelector('#zombie svg');
 
-zombie.addEventListener("mouseover", function() {zombieBounce.pause(); lineDrawing.pause()});
-zombie.addEventListener("mouseout", function() {zombieBounce.play()});
+// zombie.addEventListener("mouseover", function() {zombieBounce.pause(); lineDrawing.pause()});
+// zombie.addEventListener("mouseout", function() {zombieBounce.play()});
 
-(function() {
+// (function() {
 
-     'use strict';
+//      'use strict';
 
-    // Feature Test
-    if ( 'querySelector' in document && 'addEventListener' in window && Array.prototype.forEach ) {
+//     // Feature Test
+//     if ( 'querySelector' in document && 'addEventListener' in window && Array.prototype.forEach ) {
 
-        // Function to animate the scroll
-        var smoothScroll = function (anchor, duration) {
+//         // Function to animate the scroll
+//         var smoothScroll = function (anchor, duration) {
 
-            // Calculate how far and how fast to scroll
-            var startLocation = window.pageYOffset;
-            var endLocation = anchor.offsetTop;
-            var distance = endLocation - startLocation;
-            var increments = distance/(duration/16);
-            var stopAnimation;
+//             // Calculate how far and how fast to scroll
+//             var startLocation = window.pageYOffset;
+//             var endLocation = anchor.offsetTop;
+//             var distance = endLocation - startLocation;
+//             var increments = distance/(duration/16);
+//             var stopAnimation;
 
-            // Scroll the page by an increment, and check if it's time to stop
-            var animateScroll = function () {
-                window.scrollBy(0, increments);
-                stopAnimation();
-            };
+//             // Scroll the page by an increment, and check if it's time to stop
+//             var animateScroll = function () {
+//                 window.scrollBy(0, increments);
+//                 stopAnimation();
+//             };
 
-            // If scrolling down
-            if ( increments >= 0 ) {
-                // Stop animation when you reach the anchor OR the bottom of the page
-                stopAnimation = function () {
-                    var travelled = window.pageYOffset;
-                    if ( (travelled >= (endLocation - increments)) || ((window.innerHeight + travelled) >= document.body.offsetHeight) ) {
-                        clearInterval(runAnimation);
-                    }
-                };
-            }
-            // If scrolling up
-            else {
-                // Stop animation when you reach the anchor OR the top of the page
-                stopAnimation = function () {
-                    var travelled = window.pageYOffset;
-                    if ( travelled <= (endLocation || 0) ) {
-                        clearInterval(runAnimation);
-                    }
-                };
-            }
+//             // If scrolling down
+//             if ( increments >= 0 ) {
+//                 // Stop animation when you reach the anchor OR the bottom of the page
+//                 stopAnimation = function () {
+//                     var travelled = window.pageYOffset;
+//                     if ( (travelled >= (endLocation - increments)) || ((window.innerHeight + travelled) >= document.body.offsetHeight) ) {
+//                         clearInterval(runAnimation);
+//                     }
+//                 };
+//             }
+//             // If scrolling up
+//             else {
+//                 // Stop animation when you reach the anchor OR the top of the page
+//                 stopAnimation = function () {
+//                     var travelled = window.pageYOffset;
+//                     if ( travelled <= (endLocation || 0) ) {
+//                         clearInterval(runAnimation);
+//                     }
+//                 };
+//             }
 
-            // Loop the animation function
-            var runAnimation = setInterval(animateScroll, 16);
+//             // Loop the animation function
+//             var runAnimation = setInterval(animateScroll, 16);
        
-        };
+//         };
 
-        // Define smooth scroll links
-        var scrollToggle = document.querySelectorAll('.scroll');
+//         // Define smooth scroll links
+//         var scrollToggle = document.querySelectorAll('.scroll');
 
-        // For each smooth scroll link
-        [].forEach.call(scrollToggle, function (toggle) {
+//         // For each smooth scroll link
+//         [].forEach.call(scrollToggle, function (toggle) {
 
-            // When the smooth scroll link is clicked
-            toggle.addEventListener('click', function(e) {
+//             // When the smooth scroll link is clicked
+//             toggle.addEventListener('click', function(e) {
 
-                // Prevent the default link behavior
-                e.preventDefault();
+//                 // Prevent the default link behavior
+//                 e.preventDefault();
 
-                // Get anchor link and calculate distance from the top
-                var dataID = toggle.getAttribute('href');
-                var dataTarget = document.querySelector(dataID);
-                var dataSpeed = toggle.getAttribute('data-speed');
+//                 // Get anchor link and calculate distance from the top
+//                 var dataID = toggle.getAttribute('href');
+//                 var dataTarget = document.querySelector(dataID);
+//                 var dataSpeed = toggle.getAttribute('data-speed');
 
-                // If the anchor exists
-                if (dataTarget) {
-                    // Scroll to the anchor
-                    smoothScroll(dataTarget, dataSpeed || 500);
-                }
+//                 // If the anchor exists
+//                 if (dataTarget) {
+//                     // Scroll to the anchor
+//                     smoothScroll(dataTarget, dataSpeed || 500);
+//                 }
 
-            }, false);
+//             }, false);
 
-        });
+//         });
 
-    }
+//     }
 
- })();
+//  })();
 
 /***** ALL MATH FUNCTIONS ****/
 

@@ -4,7 +4,7 @@
     }
 
     .reporter {
-        font-family: 'reporter';
+        font-family: 'reporter', sans-serif;
     }
 
     .spin--slow {
