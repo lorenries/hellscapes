@@ -6,7 +6,7 @@ var fitText = (function() {
 
 	var nodes = document.querySelectorAll('.fitter-happier-text');
 
-	fitterHappierText(nodes);
+	fitterHappierText(nodes, { paddingY: 2 });
 
 	}());
 
