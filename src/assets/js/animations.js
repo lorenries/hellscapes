@@ -24,6 +24,16 @@ var animations = (function() {
 	  loop: true
 	});
 
+	var zombieBounce = anime({
+	  targets: '#zombie svg',
+	  easing: 'easeInOutSine',
+	  duration: 1000,
+	  translateY: 20,
+	  delay: function(el, i) { return i * 250 },
+	  direction: 'alternate',
+	  loop: true
+	});	
+
 	var eyes = anime({
 	  targets: '#zombie circle',
 	  strokeDashoffset: [anime.setDashoffset, 0],
@@ -34,16 +44,6 @@ var animations = (function() {
 	    {value: '#FFF'}, // Or #FFFFFF
 	    {value: '#00B233'}
 	  ],  
-	  direction: 'alternate',
-	  loop: true
-	});
-
-	var zombieBounce = anime({
-	  targets: '#zombie svg',
-	  easing: 'easeInOutSine',
-	  duration: 1000,
-	  translateY: 20,
-	  delay: function(el, i) { return i * 250 },
 	  direction: 'alternate',
 	  loop: true
 	});

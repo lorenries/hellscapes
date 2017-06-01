@@ -1,13 +1,13 @@
 "use strict";
 
-var fitText = function(domNodes) {
+var fitText = (function() {
 
 	var fitterHappierText = require('fitter-happier-text');
 
-	var nodes = document.querySelectorAll(domNodes);
+	var nodes = document.querySelectorAll('.fitter-happier-text');
 
 	fitterHappierText(nodes);
 
-	};
+	}());
 
 module.exports = fitText;
