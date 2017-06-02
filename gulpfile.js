@@ -15,7 +15,7 @@ gulp.task('css', function() {
     return gulp.src('./src/assets/css/*.css')
         .pipe(concat('main.css'))
         .pipe(uncss({
-            html: ['http://localhost:3000/']
+            html: ['./src/index.html']
         }))
         .pipe(nano({
             discardComments: {removeAll: true}
@@ -27,7 +27,6 @@ gulp.task('css', function() {
 });
 
 gulp.task('js', function() {
-
     return browserify('./src/assets/js/main.js')
         .transform("babelify", { presets: ["latest"] })
         .bundle()
@@ -57,9 +56,11 @@ gulp.task('serve', ['js'], function() {
     // gulp.watch("v2/index.html", browserSync.reload)
 });
 
-gulp.task('build', function() {
+gulp.task('build', ['js', 'css'], function() {
   // copy any html files in source/ to public/
-  	gulp.src('src/*.html').pipe(gulp.dest('dist'));
-  	gulp.src('src/assets/js/bundle.js').pipe(gulp.dest('dist/assets/js'));
-  	gulp.src('src/assets/css/main.css').pipe(gulp.dest('dist/assets/css'));
+  	gulp.src('./src/*.html').pipe(gulp.dest('./dist/'));
+    gulp.src('./src/assets/icons/*').pipe(gulp.dest('./dist/assets/icons/'));
+    gulp.src('./src/assets/images/*').pipe(gulp.dest('./dist/assets/images/'));
+  	gulp.src('./src/assets/js/bundle.js').pipe(gulp.dest('dist/assets/js/'));
+  	gulp.src('./src/assets/css/main.css').pipe(gulp.dest('dist/assets/css/'));
 });

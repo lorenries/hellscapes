@@ -4,7 +4,9 @@
   "description": "visions of the apocalypse",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp build",
+    "deploy": "rm -rf dist/ && npm run build && rsync -rav --progress -e 'ssh -i ${HELLSCAPES_PATH}' dist/* ${HELLSCAPES_LOCATION}"
   },
   "repository": {
     "type": "git",
@@ -22,6 +24,7 @@
     "babelify": "^7.3.0",
     "browser-sync": "^2.18.12",
     "browserify": "^14.4.0",
+    "browserify-shim": "^3.8.14",
     "d3-tip": "^0.6.7",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
@@ -32,6 +35,15 @@
     "gulp-util": "^3.0.8",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "d3": "d3",
+    "topojson": "topojson"
   },
   "dependencies": {
     "animejs": "^2.0.2",
