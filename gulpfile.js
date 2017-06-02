@@ -5,18 +5,11 @@ var concat 		= require('gulp-concat');
 var nano 		= require('gulp-cssnano');
 var browserify 	= require('browserify');
 var source 		= require('vinyl-source-stream');
-
-gulp.task('serve', function() {
-    browserSync.init({
-        server: {
-            baseDir: "./src/"
-        }
-    });
-    gulp.watch("assets/css/*.css", ['css'])
-    gulp.watch("assets/js/*.js", browserSync.reload)
-    gulp.watch("index.html", browserSync.reload)
-    gulp.watch("v2/index.html", browserSync.reload)
-});
+var uglify      = require('gulp-uglify');
+var buffer      = require('vinyl-buffer');
+var gutil       = require('gulp-util');
+var babelify    = require('babelify');
+var autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('css', function() {
     return gulp.src('./src/assets/css/*.css')
@@ -27,16 +20,41 @@ gulp.task('css', function() {
         .pipe(nano({
             discardComments: {removeAll: true}
         }))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions']
+        }))        
         .pipe(gulp.dest('./src/assets/css/'));
 });
 
 gulp.task('js', function() {
+
     return browserify('./src/assets/js/main.js')
+        .transform("babelify", { presets: ["latest"] })
         .bundle()
         //Pass desired output filename to vinyl-source-stream
         .pipe(source('bundle.js'))
+        .pipe(buffer())
         // Start piping stream to tasks!
+        .pipe(uglify())
+        .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
         .pipe(gulp.dest('./src/assets/js/'));
+});
+
+gulp.task('reload-js', ['js', 'css'], function(done) {
+  browserSync.reload();
+  done();
+});
+
+gulp.task('serve', ['js'], function() {
+    browserSync.init({
+        server: {
+            baseDir: "./src/"
+        }
+    });
+    // gulp.watch("./src/assets/css/*.css", ['css'])
+    gulp.watch("./src/assets/js/*.js", ['reload-js'])
+    // gulp.watch("./src/index.html", browserSync.reload)
+    // gulp.watch("v2/index.html", browserSync.reload)
 });
 
 gulp.task('build', function() {
