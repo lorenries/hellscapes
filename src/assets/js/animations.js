@@ -35,10 +35,10 @@ var animations = (function() {
 	});	
 
 	var eyes = anime({
-	  targets: '#zombie circle',
+	  targets: '#zombie .eyes',
 	  strokeDashoffset: [anime.setDashoffset, 0],
 	  easing: 'easeInOutSine',
-	  duration: 1100,
+	  duration: 1000,
 	  delay: function(el, i) { return i * 250 },
 	  stroke: [
 	    {value: '#FFF'}, // Or #FFFFFF
