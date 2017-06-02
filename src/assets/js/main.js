@@ -7,7 +7,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     var animations = require('./animations.js');
     var smoothScroll = require('./smoothScroll.js');
+    var d3 = require('d3');
+    var topojson = require('topojson');
     var math = require('./math.js');
+    var d3tip = require("d3-tip")(d3);
+    var Tabletop = require('tabletop');
 
     // Define SVG variables
 
@@ -23,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var path = d3.geo.path()
         .projection(projection);
 
-    var tip = d3.tip()
+    var tip = d3tip()
         .attr('class', 'd3-tip')
         .html(function(d) {
             return `
@@ -84,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         svg.selectAll("path").attr("d", path);
 
         svg.selectAll(".explosion")
-            .attr("d", circlePath)
+            .attr("d", circlePath);
 
         svg.selectAll("circle")
             .attr("cx", function(d) {
@@ -92,10 +96,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
             })
             .attr("cy", function(d) {
                 return projection(d)[1];
-            })
-    }
+            });
+    };
 
-    function dragended() {}
+    function dragended() {};
 
     // Add data to map and initialize Google spreadsheet
 
@@ -125,8 +129,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
             key: publicSpreadsheetUrl,
             callback: printDataOntoMap,
             simpleSheet: true
-        })
-    }
+        });
+    };
 
     function printDataOntoMap(data, tabletop) {
         svg.selectAll("path.explosion")
@@ -136,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             .attr("d", circlePath)
             .style("pointer-events", "visible")
             .on('click', rotateMap);
-    }
+    };
 
     // Return an SVG path from a GeoJSON object with Lat/Long data
 
@@ -157,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     projection.rotate(r(t));
                     svg.selectAll("path").attr("d", path);
                     svg.selectAll(".explosion").attr("d", circlePath);
-                }
+                };
             })
             .each("end", function() {
                 tip.show(d, target);
@@ -168,10 +172,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     } else {
                         // otherwise close tip
                         tip.hide(d, target);
-                    }
+                    };
                 });
 
             });
-    }
+    };
 
 });
